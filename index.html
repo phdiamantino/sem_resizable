@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- D3-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script>  
+        d3v4 = window.d3;
+        window.d3 = null;</script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src='https://raw.githack.com/karpathy/tsnejs/master/tsne.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- TSNE-->
+    <script src="tsne.min.js"></script>
+    <script src="worker.js"></script>
+    <!-- Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>  
+    <link rel="stylesheet" href="css/style.css"></link>
+     <!-- Fonte / ProgressBar / Parallax-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+      <!-- <script src="css/progressbar.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+    <title>D3.Js</title>
+
+</head>
+
+
+<body>  
+ 
+    <header>    
+    <div class="cont" id="nav-cont">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="d-flex align-items-center">
+          <i class="fas me-1"></i>
+          <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+            <h2 class="fs-2 m-0">Dashboard</h2>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-links"> 
+          <div class="navbar-nav">
+            <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
+            <a class="nav-item nav-link" id="about-menu" href="about.html">About</a>
+          </div>
+        </div>
+      </nav>
+    </div> 
+
+    </header>
+
+
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"></div>
+            <!-- Selecionar Repositório-->
+                    <div  class="form-group form-control-lg" >
+                      <label for="selectRep" ><h4> Select Repository</h4></label>
+                      <div id="formSide">
+                        <div id="formSB">
+                          <div id="formTR">
+                            <div id="formMP">
+                              <select id="selectRep" class="form-select my-select" required>
+                                <option value="jUnity" selected>jUnity</option>
+                                <option value="Apache">Apache</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <p id="selectedRep"></p>
+                    </div>
+                    <div class="list-group list-group-flush my-3">  
+                    </div>
+            <div id= "sidebarInfo"></div>
+    </div>
+
+
+    
+
+<!-- Page Content -->
+  <div class="relative">
+    <div id="sumburst">
+    </div>
+
+    <div id="multidimencionalProjection">
+      <style>
+          #bttn {
+          top: 30px;
+          left: 355px;
+          width: 90px;
+        }
+        #force {
+          position: relative;
+          top: 3px;
+          left: 315px;
+        }
+        #force2 {
+          position: relative;
+          top: 2px;
+          left: 312px;
+        }
+      </style>
+      <button type="button" id='bttn' class="btn btn-secondary">Reset Zoom</button>
+      <div class="form-check form-switch">
+        <input class="form-check-input  " type="checkbox" id='force' value="force"  >
+        <label id='force2' > Worker Force</label>
+      </div>
+      <svgMP>
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop   offset="0.0%" stop-color="#2c7bb6"></stop>
+            <stop  offset="12.5%" stop-color="#00a6ca"></stop>
+            <stop  offset="25.0%" stop-color="#00ccbc"></stop>
+            <stop  offset="37.5%" stop-color="#90eb9d"></stop>
+            <stop  offset="50.0%" stop-color="#ffff8c"></stop>
+            <stop  offset="62.5%" stop-color="#f9d057"></stop>
+            <stop  offset="75.0%" stop-color="#f29e2e"></stop>
+            <stop  offset="87.5%" stop-color="#e76818"></stop>
+            <stop offset="100.0%" stop-color="#d7191c"></stop>
+          </linearGradient>
+        </defs>
+      </svgMP>
+    </div>
+          <!--Tabela p/ brush-->
+          <div id="multidimencionalProjectionTable">
+            <style>
+                svgMP { 
+                display: block;
+              }
+            </style>
+            <div id="table">
+              <table>
+                  <tr>
+                      <th>Filename</th>
+                      <th>Reference</th> 
+                      <th>Patern</th> 
+                      <th>Heuristic</th> 
+                      <th>Score</th> 
+                      <th>Nº Debts</th> 
+                      <th>Version</th> 
+                      <th>Index</th> 
+                  </tr>
+              </table>
+            </div> 
+          </div>
+    <div id="parallelCordinates">
+              <style>
+              .axis text {
+                text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+                cursor: move;
+              }
+                </style>
+    </div>
+    <div id="versions"></div> 
+
+    <div id="themeRiver">
+        <div id="wordCloud"></div>
+        <div id="legend_tr"></div>
+            <select id="custom-select-tr">
+              <option value="Quintil" selected> Quintil</option>
+              <option value="Decil"> Decil</option>
+            </select>
+            <p id="selectedQ"></p>
+            <form id='form'>
+              <input type="radio" name="colorButton" value="words"checked><b> Main Words</b> <br>
+              <input type="radio" name="colorButton" value="resultwords"><b> Feeling Words</b><br>
+            </form>
+    </div>
+    </div>
+
+<!--
+  <script src="sidebar.js"></script>
+  <script src="mp.js"></script>
+  <script src="pc.js"></script>
+  <script src="sb.js"></script>
+  <script src="tr.js"></script>
+  -->
+  
+  <script src="sidebar.js"></script>
+  <script src="mp.js"></script>
+  <script src="pc.js"></script>
+  <script src="sb.js"></script>
+  <script src="tr.js"></script>
+
+  <link rel="stylesheet" href="style.css"></link>
+  </div>
+
+  <script>
+      var el = document.getElementById("wrapper");
+      var toggleButton = document.getElementById("menu-toggle");
+
+      toggleButton.onclick = function () {
+          el.classList.toggle("toggled");
+      };
+
+  </script>
+
+
+</body>  
+
+</html>

@@ -1,0 +1,267 @@
+.foreground path {
+  fill: none;
+  stroke: steelblue;
+  cursor: pointer;
+    opacity: 0.6;
+}
+
+  
+.my-select {
+  padding: 5px 65px;
+  font-size: 17px;
+  /*background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #7a868b), to(#FFFFFF)); 
+*/
+  cursor: pointer; 
+}
+
+path:hover { 
+    stroke:rgb(0, 26, 255);
+    stroke-width: 2;
+    cursor: pointer;
+    opacity: 1;
+}
+
+line {
+    fill: none;
+    stroke: #ffab00;
+    stroke-width: 2;
+}
+
+#versions {
+    background-color: grey;
+    width:10;
+    height:20;
+}
+.ol-popup h1 {
+  font-size: 2em;
+  color: #369;
+}
+
+.link {
+	fill: none;
+	stroke: #555;
+	stroke-opacity: 0.4;
+	stroke-width: 1.5px;
+}
+
+.chart { 
+    background: #fff;
+  }
+  
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+    shape-rendering: crispEdges;
+  }
+  
+button {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+  }
+
+
+p {
+  font: 11px Verdana;
+}
+
+#sumburst {    
+	position:relative;
+	top: 66px;
+  left:0px;
+  width: 10px;
+  height: 1px;
+  /*background-color: rgb(215, 182, 221);*/
+}
+#sumburst path { 
+  fill: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#sumburst path:hover { 
+    stroke:rgb(0, 26, 255);
+    stroke-width: 2;
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+#multidimencionalProjection {    
+	position:relative;
+	top:56px;
+  left:620px;
+  width: 300px;
+  height: 1px;
+  /*background-color: rgb(218, 223, 149);*/
+}
+
+#multidimencionalProjectionTable {    
+	position:relative;
+	top:765px; /*365*/
+  left:20px; /*620*/
+  width: 1080px;
+  height: 110px;
+  /*background-color: rgb(109, 116, 23);*/
+  overflow-y: scroll; /* Show vertical scrollbar */
+  overflow-x: scroll; /* Show horizontal scrollbar */
+  background-color: white;
+}
+
+table {
+  visibility: hidden;
+  position: absolute;
+  /*top: 40px;
+  left: 650px;*/
+  font-family: sans-serif;
+  font-size: 0.6em; 
+}
+th { 
+  background: #333; 
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #d4d1d1; /*deixa a tabela cor sim, cor não*/
+}
+td, th { 
+  padding: 2px; 
+  border: 1px solid rgb(27, 26, 26); 
+}
+
+#parallelCordinates {    
+	position:relative;
+	top:380px;
+  left:620px;
+  width: 10px;
+  height: 1px;
+  /*background-color: rgb(230, 203, 203);*/
+}
+#parallelCordinates path { 
+  stroke: grey;
+  stroke-width: 1.5;
+  fill: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+#parallelCordinates path:hover { 
+  stroke:rgb(0, 26, 255);
+  stroke-width: 2;
+  cursor: pointer;
+  opacity: 1;
+}
+
+#themeRiver {    
+	position:relative;
+	top:350px;
+  left:0px;
+  /*width: 10px;
+  height: 1px;*/
+  /*background-color: rgb(149, 212, 223);*/
+}
+#themeriver path { 
+  stroke: grey;
+  stroke-width: 1.5;
+  fill: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+#legend_tr {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(54, 51, 51, 0.7));
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+  /* Similar syntax to box-shadow */
+}
+/* BOTTOM SELECT THEMERIVER */
+#custom-select-tr {
+  position: relative;
+  top:0px;
+  left:00px;
+  padding: 2px;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+.custom-select-tr{
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.custom-select-tr select {
+  display: default; /*hide original SELECT element: */
+}
+.custom-select-tr select {
+  display: default; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+  padding: 10px;
+  cursor: pointer;
+}
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  cursor: pointer;
+}
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+  cursor: pointer;
+}
+
+.form {
+  position: relative;
+  top:7px;
+  left:40px;
+  padding: 2px;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+
+form {
+  position: absolute;
+  left: 40px;
+  top: 35px;
+}
+
+
+/* Sidebar */
+#sidebar {    
+	position:absolute;
+	top: 100px;
+  left:50;
+  background-color: #444;
+}
+
+
